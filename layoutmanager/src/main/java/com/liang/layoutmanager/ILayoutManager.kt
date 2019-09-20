@@ -7,8 +7,23 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class ILayoutManager(context: Context, orientation: Int, reverseLayout: Boolean) :
     LinearLayoutManager(context, orientation, reverseLayout) {
 
-    override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) {
-        super.onLayoutChildren(recycler, state)
+    private val layoutHelpers = arrayListOf<LayoutHelper<*>>()
+
+    fun setLayoutHelpers(helpers: Collection<LayoutHelper<*>>) {
+        layoutHelpers.clear()
+        layoutHelpers.addAll(helpers)
+    }
+
+    fun addLayoutHelpers(helpers: Collection<LayoutHelper<*>>) {
+        layoutHelpers.addAll(helpers)
+    }
+
+    fun addLayoutHelper(helper: LayoutHelper<*>) {
+        layoutHelpers.add(helper)
+    }
+
+    fun getLayoutHelpers(): ArrayList<LayoutHelper<*>> {
+        return layoutHelpers
     }
 
 

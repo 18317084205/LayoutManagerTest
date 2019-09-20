@@ -7,11 +7,14 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.layoutmanagertest.bean.TestBean
+import com.liang.layoutmanager.LayoutHelper
+import com.liang.layoutmanager.layout.LinearLayoutHelper
 import com.liang.layoutmanager.test.TestLayoutManager
 import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : AppCompatActivity() {
 
+    val helpers = arrayListOf<LayoutHelper<TestBean>>()
 
     private val layoutManager by lazy {
         TestLayoutManager(this)
@@ -45,6 +48,9 @@ class TestActivity : AppCompatActivity() {
         for (i in 0..100) {
             testData.add(TestBean(i, "Test:$i"))
         }
-        testAdapter.addAll(testData)
+//        testAdapter.addAll(testData)
+        helpers.add(LinearLayoutHelper(testData))
+        testAdapter.setLayoutHelpers(helpers)
+
     }
 }

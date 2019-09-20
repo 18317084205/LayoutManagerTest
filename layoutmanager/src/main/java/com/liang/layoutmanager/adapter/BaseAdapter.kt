@@ -1,4 +1,4 @@
-package com.liang.layoutmanager
+package com.liang.layoutmanager.adapter
 
 import android.util.Log
 import android.view.View
@@ -11,16 +11,7 @@ import com.liang.layoutmanager.utils.findDataBinding
 import com.liang.layoutmanager.utils.inflate
 import kotlin.math.min
 
-abstract class BaseAdapter<Data : Any>(layoutManager: ILayoutManager) :
-    IAdapter<BaseAdapter.BaseViewHolder>(
-        layoutManager
-    ) {
-
-    private val data = ObservableArrayList<Data>()
-
-    override fun getItemCount(): Int {
-        return data.size
-    }
+abstract class BaseAdapter<Data> : IAdapter<Data, BaseAdapter.BaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return BaseViewHolder(
@@ -41,57 +32,14 @@ abstract class BaseAdapter<Data : Any>(layoutManager: ILayoutManager) :
 
     abstract fun bindViewHolder(viewDataBinding: ViewDataBinding, position: Int)
 
-    fun add(`object`: Data) {
-        data.add(`object`)
-    }
-
-    fun add(index: Int, `object`: Data) {
-        data.add(index, `object`)
-    }
-
-    fun addAll(collection: Collection<Data>?) {
-        if (collection != null) {
-            data.addAll(collection)
-        }
-    }
-
-    fun addAll(vararg items: Data) {
-        addAll(items.asList())
-    }
-
-    fun clear() {
-        data.clear()
-    }
-
-    fun remove(`object`: Data) {
-        data.remove(`object`)
-    }
-
-    fun remove(index: Int) {
-        data.removeAt(index)
-    }
-
-    fun reset(collection: Collection<Data>?) {
-        clear()
-        addAll(collection)
-    }
-
-    fun getItems(): ObservableArrayList<Data> {
-        return data
-    }
-
-    fun getItem(position: Int): Data {
-        return data[position]
-    }
-
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        data.addOnListChangedCallback(itemsChangedCallback)
+        getItems().addOnListChangedCallback(itemsChangedCallback)
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
-        data.removeOnListChangedCallback(itemsChangedCallback)
+        getItems().removeOnListChangedCallback(itemsChangedCallback)
     }
 
     private val itemsChangedCallback = object :
