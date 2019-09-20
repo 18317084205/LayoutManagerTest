@@ -15,5 +15,6 @@ fun inflate(
 }
 
 fun findDataBinding(view: View): ViewDataBinding? {
-    return DataBindingUtil.findBinding<ViewDataBinding>(view)
+    return DataBindingUtil.findBinding(view)
 }
+

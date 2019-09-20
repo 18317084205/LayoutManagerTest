@@ -12,15 +12,20 @@ import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : AppCompatActivity() {
 
-    private val testAdapter: TestAdapter by lazy {
-        TestAdapter()
+
+    private val layoutManager by lazy {
+        TestLayoutManager(this)
+    }
+    private val testAdapter by lazy {
+        TestAdapter(layoutManager)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
-        recyclerView.layoutManager = TestLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = testAdapter
+
         recyclerView.addItemDecoration(object : ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
@@ -40,6 +45,6 @@ class TestActivity : AppCompatActivity() {
         for (i in 0..100) {
             testData.add(TestBean(i, "Test:$i"))
         }
-        testAdapter.addData(testData)
+        testAdapter.addAll(testData)
     }
 }

@@ -1,3 +1,10 @@
 package com.example.layoutmanagertest.bean
 
-data class TestBean(val id: Int, val name: String)
+import android.view.View
+import android.widget.Toast
+
+data class TestBean(val id: Int, val name: String) {
+    fun onClick(view: View) {
+        Toast.makeText(view.context, "onClick: id=$id, name=$name", Toast.LENGTH_SHORT).show()
+    }
+}

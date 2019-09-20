@@ -1,33 +1,20 @@
 package com.example.layoutmanagertest
 
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.databinding.ViewDataBinding
 import com.example.layoutmanagertest.bean.TestBean
 import com.example.layoutmanagertest.databinding.TestItemBinding
-import com.liang.layoutmanager.utils.findDataBinding
-import com.liang.layoutmanager.utils.inflate
+import com.liang.layoutmanager.BaseAdapter
+import com.liang.layoutmanager.ILayoutManager
 
-class TestAdapter : RecyclerView.Adapter<TestAdapter.TestHolder>() {
-    private val testData = ArrayList<TestBean>()
 
-    fun addData(data: List<TestBean>) {
-        testData.addAll(data)
-        notifyDataSetChanged()
+class TestAdapter(layoutManager: ILayoutManager) : BaseAdapter<TestBean>(layoutManager) {
+    override fun getItemLayoutId(viewType: Int): Int {
+        return R.layout.test_item
     }
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestHolder {
-        return TestHolder(inflate(parent.context, R.layout.test_item, parent, false).root)
+    override fun bindViewHolder(viewDataBinding: ViewDataBinding, position: Int) {
+        when(viewDataBinding){
+            is TestItemBinding-> viewDataBinding.item = getItem(position)
+        }
     }
-
-    override fun getItemCount(): Int {
-        return testData.size
-    }
-
-    override fun onBindViewHolder(holder: TestHolder, position: Int) {
-        (findDataBinding(holder.itemView) as TestItemBinding).item = testData[position]
-    }
-
-    class TestHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }

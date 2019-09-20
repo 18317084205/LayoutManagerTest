@@ -1,10 +1,9 @@
 package com.liang.layoutmanager.test
 
 import android.content.Context
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.liang.layoutmanager.ILayoutManager
 
-class TestLayoutManager : LinearLayoutManager {
+class TestLayoutManager : ILayoutManager {
 
     constructor(context: Context) : this(context, VERTICAL, false)
 
@@ -14,7 +13,4 @@ class TestLayoutManager : LinearLayoutManager {
         reverseLayout
     )
 
-    override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) {
-        super.onLayoutChildren(recycler, state)
-    }
 }
