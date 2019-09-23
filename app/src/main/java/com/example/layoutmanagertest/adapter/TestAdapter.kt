@@ -1,6 +1,7 @@
-package com.example.layoutmanagertest
+package com.example.layoutmanagertest.adapter
 
 import androidx.databinding.ViewDataBinding
+import com.example.layoutmanagertest.R
 import com.example.layoutmanagertest.bean.TestBean
 import com.example.layoutmanagertest.databinding.TestItemBinding
 import com.liang.layoutmanager.ILayoutManager

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import com.example.layoutmanagertest.adapter.TestAdapter
 import com.example.layoutmanagertest.bean.TestBean
 import com.liang.layoutmanager.LayoutHelper
 import com.liang.layoutmanager.layout.LinearLayoutHelper
@@ -44,9 +45,10 @@ class TestActivity : AppCompatActivity() {
     }
 
     private fun initData() {
+
         val testData = ArrayList<TestBean>()
         for (i in 0..100) {
-            testData.add(TestBean(i, "Test:$i"))
+            testData.add(TestBean(i, "Test:$i",""))
         }
 //        testAdapter.addAll(testData)
         helpers.add(LinearLayoutHelper(testData))

@@ -12,6 +12,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    fun jumpToNormalTest(view: View) {
+        startActivity(Intent(this, NormalActivity::class.java))
+    }
+
     fun jumpToTest(view: View) {
         startActivity(Intent(this, TestActivity::class.java))
     }

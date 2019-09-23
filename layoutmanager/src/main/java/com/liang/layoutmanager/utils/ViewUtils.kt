@@ -22,32 +22,32 @@ fun findDataBinding(view: View): ViewDataBinding? {
 
 /**
  * 获取某个childView在水平方向所占的空间
- * @param LayoutManager
+ * @param layoutManager
  * @param view
  * @return
  */
-fun getDecoratedMeasurementHorizontal(LayoutManager: RecyclerView.LayoutManager, view: View): Int {
+fun getDecoratedMeasurementHorizontal(layoutManager: RecyclerView.LayoutManager, view: View): Int {
     val params = view.layoutParams as RecyclerView.LayoutParams
-    return (LayoutManager.getDecoratedMeasuredWidth(view) + params.leftMargin
+    return (layoutManager.getDecoratedMeasuredWidth(view) + params.leftMargin
             + params.rightMargin)
 }
 
 /**
  * 获取某个childView在竖直方向所占的空间
- * @param LayoutManager
+ * @param layoutManager
  * @param view
  * @return
  */
-fun getDecoratedMeasurementVertical(LayoutManager: RecyclerView.LayoutManager, view: View): Int {
+fun getDecoratedMeasurementVertical(layoutManager: RecyclerView.LayoutManager, view: View): Int {
     val params = view.layoutParams as RecyclerView.LayoutParams
-    return (LayoutManager.getDecoratedMeasuredHeight(view) + params.topMargin
+    return (layoutManager.getDecoratedMeasuredHeight(view) + params.topMargin
             + params.bottomMargin)
 }
 
-fun getHorizontalSpace(LayoutManager: RecyclerView.LayoutManager): Int {
-    return LayoutManager.width - LayoutManager.paddingLeft - LayoutManager.paddingRight
+fun getHorizontalSpace(layoutManager: RecyclerView.LayoutManager): Int {
+    return layoutManager.width - layoutManager.paddingLeft - layoutManager.paddingRight
 }
 
-fun getVerticalSpace(LayoutManager: RecyclerView.LayoutManager): Int {
-    return LayoutManager.height - LayoutManager.paddingTop - LayoutManager.paddingBottom
+fun getVerticalSpace(layoutManager: RecyclerView.LayoutManager): Int {
+    return layoutManager.height - layoutManager.paddingTop - layoutManager.paddingBottom
 }

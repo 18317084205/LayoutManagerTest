@@ -15,6 +15,6 @@ abstract class LayoutHelper<Data> {
         return items
     }
 
-    abstract fun onItemLayout(recycler: RecyclerView.Recycler, state: RecyclerView.State, dy: Int)
+    abstract fun onItemLayout(recycler: RecyclerView.Recycler, state: RecyclerView.State, dy: Int): Int
 
 }

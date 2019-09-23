@@ -25,8 +25,8 @@ class LinearLayoutHelper<Data> : LayoutHelper<Data> {
         setItems(data)
     }
 
-    override fun onItemLayout(recycler: RecyclerView.Recycler, state: RecyclerView.State, dy: Int) {
-
+    override fun onItemLayout(recycler: RecyclerView.Recycler, state: RecyclerView.State, dy: Int): Int {
+        return 0
     }
 
 

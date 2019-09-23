@@ -9,6 +9,7 @@ import com.liang.layoutmanager.ILayoutManager
 import com.liang.layoutmanager.utils.getDecoratedMeasurementHorizontal
 import com.liang.layoutmanager.utils.getDecoratedMeasurementVertical
 import com.liang.layoutmanager.utils.getHorizontalSpace
+import kotlin.math.max
 
 class TestLayoutManager : ILayoutManager {
 
@@ -111,8 +112,7 @@ class TestLayoutManager : ILayoutManager {
                 minPos = getPosition(lastView!!) + 1//从最后一个View+1开始吧
                 topOffset = getDecoratedTop(lastView)
                 leftOffset = getDecoratedRight(lastView)
-                lineMaxHeight =
-                    Math.max(lineMaxHeight, getDecoratedMeasurementVertical(this, lastView))
+                lineMaxHeight = max(lineMaxHeight, getDecoratedMeasurementVertical(this, lastView))
             }
             //顺序addChildView
             for (i in minPos..mListVisitPosition) {
