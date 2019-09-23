@@ -10,6 +10,7 @@
  */
 package com.example.layoutmanagertest.view;
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -41,6 +42,25 @@ class ArrayItemView1_6 : FrameLayout {
         defStyleAttr
     )
 
+    @SuppressLint("DrawAllocation")
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+        val itemWidth = width / 5
+
+        for (i in 0..childCount) {
+            val child: View? = getChildAt(i)
+            child?.let {
+                when (i) {
+                    0 -> it.layoutParams = FrameLayout.LayoutParams(itemWidth * 2, height)
+                    else -> it.layoutParams = FrameLayout.LayoutParams(itemWidth, height / 2)
+                }
+            }
+        }
+
+
+    }
+
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
 
@@ -51,8 +71,8 @@ class ArrayItemView1_6 : FrameLayout {
             child?.let {
                 when (i) {
                     0 -> it.layout(0, 0, itemWidth * 2, height)
-                    in 2..3 -> it.layout(itemWidth * (i + 2), 0, itemWidth * (i + 3), height / 2)
-                    else -> it.layout(itemWidth * (i + 2), height / 2, itemWidth * (i + 3), height)
+                    in 1..3 -> it.layout(itemWidth * (i + 1), 0, itemWidth * (i + 2), height / 2)
+                    else -> it.layout(itemWidth * (i - 2), height / 2, itemWidth * (i + 3), height)
                 }
             }
         }
